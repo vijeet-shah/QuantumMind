@@ -1,7 +1,6 @@
+import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-
-import { db } from "@/lib/db";
 
 export async function PATCH(
   req: Request,
@@ -23,19 +22,29 @@ export async function PATCH(
         chapters: {
           include: {
             muxData: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
 
     if (!course) {
-      return new NextResponse("Not found", { status: 404 });
+      return new NextResponse("Course not found", { status: 404 });
     }
 
-    const hasPublishedChapter = course.chapters.some((chapter) => chapter.isPublished);
+    //some because only one is needed
+    const hasPublishedChapters = course.chapters.some(
+      (chapter) => chapter.isPublished
+    );
 
-    if (!course.title || !course.description || !course.imageUrl || !course.categoryId || !hasPublishedChapter) {
-      return new NextResponse("Missing required fields", { status: 401 });
+    if (
+      !course ||
+      !course.title ||
+      !course.description ||
+      !course.imageUrl ||
+      !course.categoryId ||
+      !hasPublishedChapters
+    ) {
+      return new NextResponse("Missing necessary fields", { status: 400 });
     }
 
     const publishedCourse = await db.course.update({
@@ -45,12 +54,12 @@ export async function PATCH(
       },
       data: {
         isPublished: true,
-      }
+      },
     });
 
     return NextResponse.json(publishedCourse);
   } catch (error) {
-    console.log("[COURSE_ID_PUBLISH]", error);
-    return new NextResponse("Internal Error", { status: 500 });
-  } 
+    console.log("[CHAPTER_UNPUBLISH]", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
 }

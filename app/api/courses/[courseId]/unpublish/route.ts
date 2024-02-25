@@ -1,7 +1,6 @@
+import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-
-import { db } from "@/lib/db";
 
 export async function PATCH(
   req: Request,
@@ -19,25 +18,32 @@ export async function PATCH(
         id: params.courseId,
         userId,
       },
+      include: {
+        chapters: {
+          include: {
+            muxData: true,
+          },
+        },
+      },
     });
 
     if (!course) {
-      return new NextResponse("Not found", { status: 404 });
+      return new NextResponse("Not found", { status: 400 });
     }
 
-    const unpublishedCourse = await db.course.update({
+    const publishedCourse = await db.course.update({
       where: {
         id: params.courseId,
-        userId,
+        userId: userId,
       },
       data: {
         isPublished: false,
-      }
+      },
     });
 
-    return NextResponse.json(unpublishedCourse);
+    return NextResponse.json(publishedCourse);
   } catch (error) {
-    console.log("[COURSE_ID_UNPUBLISH]", error);
-    return new NextResponse("Internal Error", { status: 500 });
-  } 
+    console.log("[CHAPTER_UNPUBLISH]", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
 }

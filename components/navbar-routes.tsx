@@ -1,20 +1,18 @@
 "use client";
 
-import { UserButton, useAuth } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { isTeacher } from "@/lib/teacher";
-
+import { FaChalkboardTeacher } from "react-icons/fa";
 import { SearchInput } from "./search-input";
 
 export const NavbarRoutes = () => {
-  const { userId } = useAuth();
   const pathname = usePathname();
 
-  const isTeacherPage = pathname?.startsWith("/teacher");
+  const isTeacher = pathname?.startsWith("/dashboard/teacher");
   const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
 
@@ -25,25 +23,26 @@ export const NavbarRoutes = () => {
           <SearchInput />
         </div>
       )}
-      <div className="flex gap-x-2 ml-auto">
-        {isTeacherPage || isCoursePage ? (
-          <Link href="/">
-            <Button size="sm" variant="ghost">
+      <div className="flex gap-x-2 ml-auto items-center">
+        {isTeacher || isCoursePage ? (
+          <Link href={"/dashboard"}>
+            <Button size={"sm"} variant={"ghost"} className="font-semibold">
               <LogOut className="h-4 w-4 mr-2" />
               Exit
             </Button>
           </Link>
-        ) : isTeacher(userId) ? (
-          <Link href="/teacher/courses">
-            <Button size="sm" variant="ghost">
-              Teacher mode
+        ) : (
+          <Link href={"/dashboard/teacher/courses"}>
+            <Button size={"sm"} variant={"ghost"} className=" font-semibold">
+              <div className="flex items-center gap-x-2">
+                <FaChalkboardTeacher className="h-5 w-5 opacity-80" />
+                Teacher Mode
+              </div>
             </Button>
           </Link>
-        ) : null}
-        <UserButton
-          afterSignOutUrl="/"
-        />
+        )}
+        <UserButton afterSignOutUrl="/" />
       </div>
     </>
-  )
-}
+  );
+};

@@ -5,12 +5,12 @@ interface GetChapterProps {
   userId: string;
   courseId: string;
   chapterId: string;
-};
+}
 
 export const getChapter = async ({
-  userId,
-  courseId,
   chapterId,
+  courseId,
+  userId,
 }: GetChapterProps) => {
   try {
     const purchase = await db.purchase.findUnique({
@@ -18,8 +18,8 @@ export const getChapter = async ({
         userId_courseId: {
           userId,
           courseId,
-        }
-      }
+        },
+      },
     });
 
     const course = await db.course.findUnique({
@@ -29,50 +29,43 @@ export const getChapter = async ({
       },
       select: {
         price: true,
-      }
+      },
     });
 
     const chapter = await db.chapter.findUnique({
       where: {
         id: chapterId,
         isPublished: true,
-      }
+      },
     });
 
     if (!chapter || !course) {
       throw new Error("Chapter or course not found");
     }
 
-    let muxData = null;
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
     if (purchase) {
       attachments = await db.attachment.findMany({
         where: {
-          courseId: courseId
-        }
+          courseId: courseId,
+        },
       });
     }
 
     if (chapter.isFree || purchase) {
-      muxData = await db.muxData.findUnique({
-        where: {
-          chapterId: chapterId,
-        }
-      });
-
       nextChapter = await db.chapter.findFirst({
         where: {
           courseId: courseId,
           isPublished: true,
           position: {
             gt: chapter?.position,
-          }
+          },
         },
         orderBy: {
           position: "asc",
-        }
+        },
       });
     }
 
@@ -81,14 +74,13 @@ export const getChapter = async ({
         userId_chapterId: {
           userId,
           chapterId,
-        }
-      }
+        },
+      },
     });
 
     return {
       chapter,
       course,
-      muxData,
       attachments,
       nextChapter,
       userProgress,
@@ -104,6 +96,6 @@ export const getChapter = async ({
       nextChapter: null,
       userProgress: null,
       purchase: null,
-    }
+    };
   }
-}
+};
