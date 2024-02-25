@@ -8,15 +8,17 @@ import {
   FcMusic,
   FcOldTimeCamera,
   FcSalesPerformance,
-  FcSportsMode
+  FcSportsMode,
 } from "react-icons/fc";
-import { IconType } from "react-icons";
-
-import { CategoryItem } from "./category-item";
+import { FcLandscape } from "react-icons/fc";
+import { FcBusiness } from "react-icons/fc";
 
 interface CategoriesProps {
   items: Category[];
 }
+
+import { IconType } from "react-icons";
+import { CategoryItem } from "./category-item";
 
 const iconMap: Record<Category["name"], IconType> = {
   "Music": FcMusic,
@@ -24,23 +26,23 @@ const iconMap: Record<Category["name"], IconType> = {
   "Fitness": FcSportsMode,
   "Accounting": FcSalesPerformance,
   "Computer Science": FcMultipleDevices,
-  "Filming": FcFilmReel,
+  "Videography": FcFilmReel,
   "Engineering": FcEngineering,
+  "Art & Illustration": FcLandscape,
+  "Business": FcBusiness,
 };
 
-export const Categories = ({
-  items,
-}: CategoriesProps) => {
+export const Categories = ({ items }: CategoriesProps) => {
   return (
-    <div className="flex items-center gap-x-2 overflow-x-auto pb-2">
-      {items.map((item) => (
-        <CategoryItem
-          key={item.id}
-          label={item.name}
-          icon={iconMap[item.name]}
-          value={item.id}
-        />
-      ))}
+    <div className="flex items-center gap-x-2 overflow-x-auto pb-2 r">
+        {items.map((item) => (
+            <CategoryItem 
+                key={item.id}
+                label={item.name}
+                icon={iconMap[item.name]}
+                value={item.id}
+            />
+        ))}
     </div>
   )
-}
+};
