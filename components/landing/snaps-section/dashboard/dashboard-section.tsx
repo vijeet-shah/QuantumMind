@@ -17,12 +17,12 @@ const DashboardSection = () => {
           What is QuantumMind?
         </h2>
         <p className="text-lg text-neutral-600 dark:text-neutral-400 font-medium">
-          <span className="text-blue-700 ">Quantum</span>Mind isn't just another
-          learning platform. It's your launchpad to decipher the code and unlock
-          your inner developer genius. Explore cutting-edge courses curated by
-          industry engineers, and level up your skills faster than you thought
-          possible. Get ready to bend the code and become a engineer with
-          QuantumMind.
+          <span className="text-blue-700 ">Quantum</span>Mind isn&apos;t just
+          another learning platform. It&apos;s your launchpad to decipher the
+          code and unlock your inner developer genius. Explore cutting-edge
+          courses curated by industry engineers, and level up your skills faster
+          than you thought possible. Get ready to bend the code and become a
+          engineer with QuantumMind.
         </p>
 
         <Button

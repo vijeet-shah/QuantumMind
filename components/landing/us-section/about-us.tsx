@@ -27,11 +27,11 @@ const AboutUsSection = () => {
               Vijeet Shah!
               <br />
             </span>
-            Vijeet believes in the quantum leap everyone can take, and he's here
-            to guide you on your journey.
+            Vijeet believes in the quantum leap everyone can take, and he&apos;s
+            here to guide you on your journey.
             <br />
             <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              Join Vijeet's live course{" "}
+              Join Vijeet&apos;s live course{" "}
             </span>
             and master Full Stack Development{" "}
             <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">

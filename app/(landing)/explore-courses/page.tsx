@@ -1,14 +1,9 @@
 "use client";
 import { useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import {
-  ClerkLoading,
-  SignInButton,
-  SignUpButton,
-  SignIn,
-} from "@clerk/nextjs";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
-function page() {
+function ExploreCourse() {
   const { isSignedIn } = useAuth();
 
   if (isSignedIn) {
@@ -23,4 +18,4 @@ function page() {
   );
 }
 
-export default page;
+export default ExploreCourse;

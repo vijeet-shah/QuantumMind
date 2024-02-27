@@ -18,13 +18,13 @@ const DailyCodeSection = () => {
         </h2>
         <p className="text-lg text-neutral-100 dark:text-neutral-800  font-medium mb-4">
           Forget about time travel, quantum minds! Ditch the note-taking frenzy
-          and leap forward with QuantumMind's well-documented slides. Our
+          and leap forward with QuantumMind&apos;s well-documented slides. Our
           learning path provides comprehensive documentation and engaging
           tutorials, allowing you to seamlessly revisit concepts and solidify
           your understanding.
         </p>
         <p className="text-lg text-neutral-200 dark:text-neutral-600 font-medium my-2">
-          Combine this with engaging tutorials, and you've got the ultimate
+          Combine this with engaging tutorials, and you&apos;ve got the ultimate
           recipe for programming mastery. Enroll now and unlock a future where
           learning is effortless and electrifying!
         </p>

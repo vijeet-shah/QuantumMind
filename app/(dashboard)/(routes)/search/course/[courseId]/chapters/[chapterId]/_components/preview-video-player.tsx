@@ -46,7 +46,7 @@ const PreviewVideoPlayer = ({
       }
     };
     getChapter();
-  }, []);
+  });
 
   return (
     <div className="mt-5 md:mt-12 max-w-3xl mx-auto h-full">
