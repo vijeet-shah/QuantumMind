@@ -19,13 +19,14 @@ const CertsSection = () => {
         <p className="text-lg text-neutral-100 dark:text-neutral-800  font-medium mb-4">
           Master the art of coding and showcase your expertise with a
           QuantumMind Certificate. Upon completing our immersive learning
-          experience, you'll receive a prestigious certificate that validates
-          your newfound skills and sets you apart in the competitive tech
-          landscape.
+          experience, you&apos;ll receive a prestigious certificate that
+          validates your newfound skills and sets you apart in the competitive
+          tech landscape.
         </p>
         <p className="text-lg text-neutral-200 dark:text-neutral-600 font-medium my-2">
-          QuantumMind certificates are more than just a piece of paper; they're
-          a testament to your journey, your skills, and your potential.
+          QuantumMind certificates are more than just a piece of paper;
+          they&apos;re a testament to your journey, your skills, and your
+          potential.
         </p>
 
         <Button

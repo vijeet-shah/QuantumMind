@@ -21,7 +21,7 @@ const textFont = Poppins({
 });
 
 export default function MainLandingPage() {
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId: number) => {
     scroll.scrollTo(sectionId, {
       duration: 800,
       smooth: "easeInOutQuart",
@@ -55,7 +55,7 @@ export default function MainLandingPage() {
           >
             Cracking the Quantum Code, Dive into the world of programming and
             unlock your inner developer potential.Programming is the key, and
-            you hold the brush. It's time to code your way to the future!
+            you hold the brush. It&apos;s time to code your way to the future!
           </div>
         </div>
 
